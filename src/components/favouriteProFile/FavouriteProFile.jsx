@@ -4,23 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductFavoriteApiAsync } from "../../apis/product/getProductfavorite/GetProductFavorite.api";
 import Card from "../card/Card";
 import { Empty } from "antd";
+import useLoadingData from "../../customHook/useLoadingData/useLoadingData";
 
 const FavouriteProFile = () => {
   const dispatch = useDispatch();
-  const { checkUserLogin, isLogin } = useCheckLogin();
+  const { handleLoadingData } = useLoadingData();
+  const { isLogin } = useCheckLogin();
   const { productFavorite } = useSelector((state) => state.productReducer);
-
-  const getProductFavorite = async () => {
-    const action = getProductFavoriteApiAsync;
-    dispatch(action);
-  };
-
-  const handleLoadingData = () => {
-    checkUserLogin();
-    if (isLogin === true) {
-      getProductFavorite();
-    }
-  };
 
   useEffect(() => {
     handleLoadingData();

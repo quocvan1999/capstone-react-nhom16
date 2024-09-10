@@ -8,10 +8,12 @@ import userNotification from "../../customHook/userNotification/userNotification
 import Card from "../../components/card/Card";
 import { getProductFavoriteApiAsync } from "../../apis/product/getProductfavorite/GetProductFavorite.api";
 import useCheckLogin from "../../customHook/useCheckLogin/useCheckLogin";
+import useLoadingData from "../../customHook/useLoadingData/useLoadingData";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const { handleLoadingData } = useLoadingData();
   const [quantity, setQuantity] = useState(1);
   const { openNotification } = userNotification();
   const { checkUserLogin, isLogin } = useCheckLogin();
@@ -33,18 +35,6 @@ const ProductDetail = () => {
       "Add to card",
       "Product added to cart successfully"
     );
-  };
-
-  const getProductFavorite = async () => {
-    const action = getProductFavoriteApiAsync;
-    dispatch(action);
-  };
-
-  const handleLoadingData = () => {
-    checkUserLogin();
-    if (isLogin === true) {
-      getProductFavorite();
-    }
   };
 
   useEffect(() => {
