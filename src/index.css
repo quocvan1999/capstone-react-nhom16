@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .item-header {
+        font-weight: 400;
+        display: block;
+        position: relative;
+    }
+
+    .item-header-active {
+        font-weight: 500;
+        position: relative;
+    }
+
+    .item-header:hover::after,
+    .item-header-active::after {
+        position: absolute;
+        content: "";
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: black;
+        bottom: -10px;
+        left: 0;
+    }
+}
