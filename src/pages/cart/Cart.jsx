@@ -108,7 +108,9 @@ const Cart = () => {
       title: "Total",
       key: "total",
       render: (record) => {
-        return `${record.count * record.price}$`;
+        return `${(record.count * record.price)
+          .toLocaleString("en-US")
+          .replace(/,/g, ".")}$`;
       },
     },
     {
@@ -179,7 +181,12 @@ const Cart = () => {
         <div>
           <h1 className="text-3xl">Cart</h1>
           <hr className="my-6" />
-          {cart && <Table columns={columns} dataSource={cart} />}
+          {cart && (
+            <Table
+              columns={columns}
+              dataSource={cart.map((item, index) => ({ ...item, key: index }))}
+            />
+          )}
           <div className="text-center">
             <Button
               onClick={handleOrderSubmit}

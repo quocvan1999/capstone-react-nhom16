@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base {
+
+    body,
+    html {
+        font-family: "Inter", sans-serif;
+    }
+}
+
 @layer utilities {
     .item-header {
         font-weight: 400;

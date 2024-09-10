@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Cart from "./pages/cart/Cart";
 import ProFile from "./pages/proFile/ProFile";
+import ProductDetail from "./pages/productDetail/ProductDetail";
 
 function App() {
   return (
@@ -17,8 +18,13 @@ function App() {
             {/* Home page */}
             <Route index element={<Home />} />
 
+            {/* Product detail */}
+            <Route path="product">
+              <Route path=":id" element={<ProductDetail />} />
+            </Route>
+
             {/* Auth */}
-            <Route path="/auth">
+            <Route path="auth">
               <Route index element={<Login />} />
             </Route>
 

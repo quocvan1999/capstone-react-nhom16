@@ -90,7 +90,7 @@ const Card = ({
             }`}
           />
         </div>
-        <NavLink to="/">
+        <NavLink to={`/product/${product.id}`}>
           <img
             className="w-[100%] mx-auto py-5"
             src={`${

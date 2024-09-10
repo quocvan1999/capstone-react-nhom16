@@ -95,7 +95,7 @@ const OrderHistory = () => {
             defaultCurrent={1}
             current={currentPage}
             pageSize={pageSize}
-            total={proFile?.ordersHistory.length} // Tổng số orders
+            total={proFile?.ordersHistory.length} 
             onChange={handlePageChange}
             className="my-5"
             align="end"
