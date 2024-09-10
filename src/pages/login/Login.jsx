@@ -9,6 +9,8 @@ import useCheckLogin from "../../customHook/useCheckLogin/useCheckLogin";
 import ResultSuccess from "../../components/resultSuccess/ResultSuccess";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import FacebookLogin from "react-facebook-login";
+import { loginFacebook } from "../../apis/auth/loginFacebook/loginFacebook.api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,6 +20,29 @@ const Login = () => {
   const initialValues = {
     email: "",
     password: "",
+  };
+
+  const responseFacebook = async (response) => {
+    let type = "";
+    const accessToken = {
+      facebookToken: response.accessToken,
+    };
+    const res = await loginFacebook(accessToken);
+
+    switch (res.statusCode) {
+      case 200:
+        type = "success";
+        setCookie("accessToken", res.content.accessToken, 7);
+        checkUserLogin();
+        navigate("/");
+        break;
+      case 404:
+        type = "error";
+        break;
+      default:
+        break;
+    }
+    openNotification(type, "Login Notification", res.message);
   };
 
   const handleLogin = async (values) => {
@@ -120,10 +145,12 @@ const Login = () => {
           </Form>
 
           <div>
-            <NavLink className="flex items-center">
-              <FacebookFilled className="text-blue-700 text-3xl" />
-              <span>Continue with Facebook</span>
-            </NavLink>
+            <FacebookLogin
+              appId="521866350391300"
+              fields="name,email,picture"
+              callback={responseFacebook}
+            />
+            ,
           </div>
         </div>
       ) : (
