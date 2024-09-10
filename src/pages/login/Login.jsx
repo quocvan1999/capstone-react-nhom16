@@ -140,18 +140,18 @@ const Login = () => {
                 >
                   Login
                 </Button>
+                <FacebookLogin
+                  appId="521866350391300"
+                  fields="name,email"
+                  callback={responseFacebook}
+                  icon="fa-facebook"
+                  textButton=""
+                  disableMobileRedirect={true}
+                  cssClass="bg-[#0866FF] w-[40px] h-[40px] text-white rounded-full"
+                />
               </div>
             </Form.Item>
           </Form>
-
-          <div>
-            <FacebookLogin
-              appId="521866350391300"
-              fields="name,email,picture"
-              callback={responseFacebook}
-            />
-            ,
-          </div>
         </div>
       ) : (
         <ResultSuccess />
