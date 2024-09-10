@@ -8,6 +8,7 @@ import { store } from "./redux/store";
 import Cart from "./pages/cart/Cart";
 import ProFile from "./pages/proFile/ProFile";
 import ProductDetail from "./pages/productDetail/ProductDetail";
+import Register from "./pages/register/Register";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             {/* Auth */}
             <Route path="auth">
               <Route index element={<Login />} />
+              <Route path="register" element={<Register />} />
             </Route>
 
             {/* Cart */}

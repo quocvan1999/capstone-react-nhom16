@@ -123,7 +123,7 @@ const Header = () => {
               ) : (
                 <div className="flex items-center gap-2">
                   <NavLink to="/auth">Login</NavLink>
-                  <NavLink to="/">Register</NavLink>
+                  <NavLink to="/auth/register">Register</NavLink>
                 </div>
               )}
             </div>

@@ -103,7 +103,10 @@ const Login = () => {
             </Form.Item>
             <Form.Item>
               <div className="flex justify-end items-center gap-5">
-                <NavLink className="text-[#152AEBCC] font-bold">
+                <NavLink
+                  to="/auth/register"
+                  className="text-[#152AEBCC] font-bold"
+                >
                   Register now?
                 </NavLink>
                 <Button
