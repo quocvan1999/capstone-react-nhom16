@@ -10,8 +10,10 @@ import * as Yup from "yup";
 import { registerApiAsync } from "../../apis/auth/register/register.api";
 import userNotification from "../../customHook/userNotification/userNotification";
 import { useNavigate } from "react-router-dom";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const Register = () => {
+  const size = useWindowSize();
   const navigate = useNavigate();
   const { openNotification } = userNotification();
 
@@ -63,14 +65,19 @@ const Register = () => {
   });
 
   return (
-    <div className="w-[70%] mx-auto mt-10">
+    <div
+      className={`${size.width <= 768 ? "w-[100%]" : "w-[70%]"} mx-auto mt-10`}
+    >
       <h1 className="text-3xl">Register</h1>
       <hr className="my-6" />
 
       <Form layout="vertical" onSubmitCapture={formRegister.handleSubmit}>
-        <Flex className="w-full" gap={10}>
+        <Flex
+          className={`w-full ${size.width <= 600 ? "flex-col" : "flex-row"}`}
+          gap={`${size.width <= 600 ? "0" : "10px"}`}
+        >
           <Form.Item
-            className="w-[50%]"
+            className={`${size.width <= 600 ? "w-[100%]" : "w-[50%]"}`}
             label="Email"
             validateStatus={
               formRegister.touched.email && formRegister.errors.email
@@ -90,7 +97,7 @@ const Register = () => {
             />
           </Form.Item>
           <Form.Item
-            className="w-[50%]"
+            className={`${size.width <= 600 ? "w-[100%]" : "w-[50%]"}`}
             label="Name"
             validateStatus={
               formRegister.touched.name && formRegister.errors.name
@@ -111,9 +118,12 @@ const Register = () => {
           </Form.Item>
         </Flex>
 
-        <Flex className="w-full" gap={10}>
+        <Flex
+          className={`w-full ${size.width <= 600 ? "flex-col" : "flex-row"}`}
+          gap={`${size.width <= 600 ? "0" : "10px"}`}
+        >
           <Form.Item
-            className="w-[50%]"
+            className={`${size.width <= 600 ? "w-[100%]" : "w-[50%]"}`}
             label="Password"
             validateStatus={
               formRegister.touched.password && formRegister.errors.password
@@ -133,7 +143,7 @@ const Register = () => {
             />
           </Form.Item>
           <Form.Item
-            className="w-[50%]"
+            className={`${size.width <= 600 ? "w-[100%]" : "w-[50%]"}`}
             label="Phone"
             validateStatus={
               formRegister.touched.phone && formRegister.errors.phone
@@ -154,9 +164,12 @@ const Register = () => {
           </Form.Item>
         </Flex>
 
-        <Flex className="w-full" gap={10}>
+        <Flex
+          className={`w-full ${size.width <= 600 ? "flex-col" : "flex-row"}`}
+          gap={`${size.width <= 600 ? "0" : "10px"}`}
+        >
           <Form.Item
-            className="w-[50%]"
+            className={`${size.width <= 600 ? "w-[100%]" : "w-[50%]"}`}
             label="Password Confirm"
             validateStatus={
               formRegister.touched.passwordConfirm &&

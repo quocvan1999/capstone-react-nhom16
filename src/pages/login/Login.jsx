@@ -11,8 +11,10 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import FacebookLogin from "react-facebook-login";
 import { loginFacebook } from "../../apis/auth/loginFacebook/loginFacebook.api";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const Login = () => {
+  const size = useWindowSize();
   const navigate = useNavigate();
   const { openNotification } = userNotification();
   const { checkUserLogin, isLogin } = useCheckLogin();
@@ -85,7 +87,11 @@ const Login = () => {
   return (
     <>
       {isLogin === false ? (
-        <div className="w-[70%] mx-auto mt-10">
+        <div
+          className={`${
+            size.width <= 600 ? "w-[100%]" : "w-[70%]"
+          } mx-auto mt-10`}
+        >
           <h1 className="text-3xl">Login</h1>
           <hr className="my-6" />
 

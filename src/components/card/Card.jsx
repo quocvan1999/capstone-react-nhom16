@@ -80,7 +80,7 @@ const Card = ({
     } else if (size.width <= 600 && size.width > 480) {
       setWidthCard("w-[calc((100%-12px)/2)]");
     } else if (size.width <= 480) {
-      setWidthCard("(100%)");
+      setWidthCard("w-full");
     }
   };
 
