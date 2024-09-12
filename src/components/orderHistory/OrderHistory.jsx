@@ -3,9 +3,12 @@ import useCheckLogin from "../../customHook/useCheckLogin/useCheckLogin";
 import { Collapse, Empty, Pagination, Table } from "antd";
 import { formatDate } from "../../utils/method/method";
 import { PlusOutlined } from "@ant-design/icons";
+import { useWindowSize } from "@uidotdev/usehooks";
+import OrderHistoryItem from "../orderHistoryItem/OrderHistoryItem";
 
 const OrderHistory = () => {
-  const { checkUserLogin, isLogin, proFile } = useCheckLogin();
+  const size = useWindowSize();
+  const { proFile } = useCheckLogin();
   const [itemsCollapse, setItemsCollapse] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 5;
@@ -64,14 +67,24 @@ const OrderHistory = () => {
         key: index,
         label: `Orders have been placed on ${formatDate(order.date)}`,
         children: (
-          <Table
-            accordion
-            columns={itemsTable}
-            dataSource={order.orderDetail.map((detail, index) => ({
-              ...detail,
-              key: index,
-            }))}
-          />
+          <>
+            {size.width <= 480 ? (
+              <>
+                {order.orderDetail.map((detail, index) => (
+                  <OrderHistoryItem key={index} order={detail} />
+                ))}
+              </>
+            ) : (
+              <Table
+                accordion
+                columns={itemsTable}
+                dataSource={order.orderDetail.map((detail, index) => ({
+                  ...detail,
+                  key: index,
+                }))}
+              />
+            )}
+          </>
         ),
       }));
     }
@@ -95,7 +108,7 @@ const OrderHistory = () => {
             defaultCurrent={1}
             current={currentPage}
             pageSize={pageSize}
-            total={proFile?.ordersHistory.length} 
+            total={proFile?.ordersHistory.length}
             onChange={handlePageChange}
             className="my-5"
             align="end"
