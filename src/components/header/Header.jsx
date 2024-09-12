@@ -91,7 +91,7 @@ const Header = () => {
       <div className="bg-black text-white">
         <div className="max-w-[1024px] mx-auto flex justify-between items-center p-2">
           <NavLink to="/">
-            <img src="./public/image 3.png" alt="Logi image" />
+            <img src="/public/logo.png" alt="Logo" />
           </NavLink>
           <div className="flex items-center gap-5">
             <NavLink to="/product/result" className="flex items-center gap-1">
