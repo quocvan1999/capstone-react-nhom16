@@ -10,6 +10,7 @@ import Detail from "./pages/detail/Detail";
 import Register from "./pages/register/Register";
 import Search from "./pages/search/Search";
 import CartLayout from "./pages/cart/CartLayout";
+import SettingProject from "./pages/settingProject/SettingProject";
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
 
             {/* Profile */}
             <Route path="profile" element={<ProFile />} />
+
+            {/* Setting */}
+            <Route path="setting" element={<SettingProject />} />
 
             {/* Not Found */}
             <Route path="*" element={<NotFound />} />
