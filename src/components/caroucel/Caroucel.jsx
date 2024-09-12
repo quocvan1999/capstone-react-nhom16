@@ -38,14 +38,7 @@ const Caroucel = () => {
   return (
     <>
       {caroucelItem && caroucelItem.length > 0 ? (
-        <Carousel
-          className={`${size.width <= 768 && "mt-14"}`}
-          // autoplay
-          arrows
-          draggable
-          dots={false}
-          infinite={true}
-        >
+        <Carousel autoplay arrows draggable dots={false} infinite={true}>
           {caroucelItem.map((item, index) => (
             <NavLink
               to={`/product/${item.id}`}

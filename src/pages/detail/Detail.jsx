@@ -9,8 +9,10 @@ import Card from "../../components/card/Card";
 import { getProductFavoriteApiAsync } from "../../apis/product/getProductfavorite/GetProductFavorite.api";
 import useCheckLogin from "../../customHook/useCheckLogin/useCheckLogin";
 import useLoadingData from "../../customHook/useLoadingData/useLoadingData";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const Detail = () => {
+  const size = useWindowSize();
   const { id } = useParams();
   const dispatch = useDispatch();
   const { handleLoadingData } = useLoadingData();
@@ -44,16 +46,24 @@ const Detail = () => {
   return (
     <>
       {detailProduct ? (
-        <div className="w-full ">
-          <div className="flex items-start gap-3">
-            <div className="w-[40%] bg-[#F8F8F8]">
+        <div className="w-full">
+          <div
+            className={`flex items-start gap-3 ${
+              size.width <= 600 ? "flex-col" : "flex-row"
+            }`}
+          >
+            <div
+              className={`${
+                size.width <= 600 ? "w-[100%]" : "w-[40%]"
+              } bg-[#F8F8F8] flex justify-center`}
+            >
               <img
                 src={detailProduct?.image}
                 alt="product image"
                 className="w-[80%]"
               />
             </div>
-            <div className="w-[60%]">
+            <div className={`${size.width <= 600 ? "w-[100%]" : "w-[60%]"}`}>
               <h1 className="text-2xl font-medium capitalize">
                 {detailProduct?.name}
               </h1>

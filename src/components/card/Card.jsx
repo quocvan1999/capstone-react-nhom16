@@ -20,7 +20,7 @@ const Card = ({
 }) => {
   const dispatch = useDispatch();
   const { openNotification } = userNotification();
-  const [widthCard, setWidthCard] = useState("(100%-36px)/4");
+  const [widthCard, setWidthCard] = useState("w-[calc((100%-36px)/4)]");
   const size = useWindowSize();
   const { isLogin } = useCheckLogin();
   const { cart } = useSelector((state) => state.cartReducer);
@@ -74,11 +74,11 @@ const Card = ({
 
   const handleResize = () => {
     if (size.width >= 1024) {
-      setWidthCard("(100%-36px)/4");
+      setWidthCard("w-[calc((100%-36px)/4)]");
     } else if (size.width <= 768 && size.width > 600) {
-      setWidthCard("(100%-24px)/3");
+      setWidthCard("w-[calc((100%-24px)/3)]");
     } else if (size.width <= 600 && size.width > 480) {
-      setWidthCard("(100%-12px)/2");
+      setWidthCard("w-[calc((100%-12px)/2)]");
     } else if (size.width <= 480) {
       setWidthCard("(100%)");
     }
@@ -90,7 +90,7 @@ const Card = ({
 
   return (
     <div
-      className={`w-[calc(${widthCard})] bg-[#f8f8f8] shadow-[rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px] flex flex-col justify-between`}
+      className={`${widthCard} bg-[#f8f8f8] shadow-[rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px] flex flex-col justify-between`}
       style={{
         boxShadow: "0px 4px 4px 0px #00000040",
       }}

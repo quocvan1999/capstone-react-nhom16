@@ -8,7 +8,7 @@ const HomePage = () => {
       <div className="w-full">
         <Header />
       </div>
-      <div className="max-w-[1024px] mx-auto px-2 py-10">
+      <div className="max-w-[1024px] mx-auto px-2 mt-20 py-10">
         <Outlet />
       </div>
       <div className="w-full">
