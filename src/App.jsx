@@ -7,8 +7,9 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Cart from "./pages/cart/Cart";
 import ProFile from "./pages/proFile/ProFile";
-import ProductDetail from "./pages/productDetail/ProductDetail";
+import Detail from "./pages/detail/Detail";
 import Register from "./pages/register/Register";
+import Search from "./pages/search/Search";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
 
             {/* Product detail */}
             <Route path="product">
-              <Route path=":id" element={<ProductDetail />} />
+              <Route path=":id" element={<Detail />} />
+              <Route path="result" element={<Search />} />
             </Route>
 
             {/* Auth */}

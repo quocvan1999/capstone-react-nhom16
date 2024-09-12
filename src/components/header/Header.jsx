@@ -92,7 +92,7 @@ const Header = () => {
             <img src="../../../public/image 3.png" alt="Logi image" />
           </NavLink>
           <div className="flex items-center gap-5">
-            <NavLink to="/" className="flex items-center gap-1">
+            <NavLink to="/product/result" className="flex items-center gap-1">
               <SearchOutlined className="text-2xl" />
               <span>Search</span>
             </NavLink>

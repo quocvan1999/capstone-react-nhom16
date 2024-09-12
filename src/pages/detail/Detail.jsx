@@ -10,7 +10,7 @@ import { getProductFavoriteApiAsync } from "../../apis/product/getProductfavorit
 import useCheckLogin from "../../customHook/useCheckLogin/useCheckLogin";
 import useLoadingData from "../../customHook/useLoadingData/useLoadingData";
 
-const ProductDetail = () => {
+const Detail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { handleLoadingData } = useLoadingData();
@@ -173,4 +173,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default Detail;
