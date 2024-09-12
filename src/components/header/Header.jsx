@@ -11,6 +11,7 @@ import userNotification from "../../customHook/userNotification/userNotification
 import Model from "../modal/Model";
 import { deleteCookie } from "../../utils/method/method";
 import { useSelector } from "react-redux";
+import { useWindowScroll } from "@uidotdev/usehooks";
 
 const menuItems = [
   {
@@ -45,6 +46,7 @@ const Header = () => {
   const { checkUserLogin, isLogin, proFile } = useCheckLogin();
   const { openNotification } = userNotification();
   const { confirm, contextHolderModal } = Model();
+  const [{ y }] = useWindowScroll();
   const { cart } = useSelector((state) => state.cartReducer);
 
   const okFn = () => {
@@ -84,7 +86,7 @@ const Header = () => {
   }, [isLogin]);
 
   return (
-    <>
+    <div className="fixed top-0 left-0 right-0 z-50">
       {contextHolderModal}
       <div className="bg-black text-white">
         <div className="max-w-[1024px] mx-auto flex justify-between items-center p-2">
@@ -130,20 +132,22 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="max-w-[1024px] mx-auto flex items-center gap-5 p-2">
-        {menuItems.map((item) => (
-          <NavLink
-            to={item.path}
-            key={item.key}
-            className={({ isActive }) =>
-              isActive ? "item-header-active" : "item-header"
-            }
-          >
-            {item.label}
-          </NavLink>
-        ))}
+      <div className={`w-full ${y >= 50 && "bg-white shadow-md"}`}>
+        <div className="max-w-[1024px] mx-auto flex items-center gap-5 p-2">
+          {menuItems.map((item) => (
+            <NavLink
+              to={item.path}
+              key={item.key}
+              className={({ isActive }) =>
+                isActive ? "item-header-active" : "item-header"
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
