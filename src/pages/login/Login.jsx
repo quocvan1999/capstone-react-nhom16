@@ -9,9 +9,10 @@ import useCheckLogin from "../../customHook/useCheckLogin/useCheckLogin";
 import ResultSuccess from "../../components/resultSuccess/ResultSuccess";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import FacebookLogin from "react-facebook-login";
 import { loginFacebook } from "../../apis/auth/loginFacebook/loginFacebook.api";
 import { useWindowSize } from "@uidotdev/usehooks";
+import FacebookLogin from "@greatsumini/react-facebook-login";
+import "boxicons";
 
 const Login = () => {
   const size = useWindowSize();
@@ -149,11 +150,18 @@ const Login = () => {
                 <FacebookLogin
                   appId="521866350391300"
                   fields="name,email"
-                  callback={responseFacebook}
-                  icon="fa-facebook"
-                  textButton=""
-                  disableMobileRedirect={true}
-                  cssClass="bg-[#0866FF] w-[40px] h-[40px] text-white rounded-full"
+                  onSuccess={(response) => {
+                    responseFacebook(response);
+                  }}
+                  children={
+                    <div className="w-[40px] h-[40px] flex items-center justify-center rounded-full bg-[#0866FF]">
+                      <box-icon
+                        type="logo"
+                        name="facebook"
+                        color="#fff"
+                      ></box-icon>
+                    </div>
+                  }
                 />
               </div>
             </Form.Item>
