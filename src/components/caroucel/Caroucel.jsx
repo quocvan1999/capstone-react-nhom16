@@ -7,9 +7,11 @@ import { useEffect } from "react";
 import "./caroucel.css";
 import { addToCart } from "../../redux/reducel/cartReducer";
 import userNotification from "../../customHook/userNotification/userNotification";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const Caroucel = () => {
   const dispatch = useDispatch();
+  const size = useWindowSize();
   const { openNotification } = userNotification();
   const { caroucelItem } = useSelector((state) => state.productReducer);
 
@@ -36,25 +38,52 @@ const Caroucel = () => {
   return (
     <>
       {caroucelItem && caroucelItem.length > 0 ? (
-        <Carousel autoplay arrows draggable dots={false} infinite={true}>
+        <Carousel
+          className={`${size.width <= 768 && "mt-14"}`}
+          // autoplay
+          arrows
+          draggable
+          dots={false}
+          infinite={true}
+        >
           {caroucelItem.map((item, index) => (
             <NavLink
               to={`/product/${item.id}`}
-              className="w-full !flex items-center px-20 hover:text-black"
+              className={`w-full !flex items-center px-20 hover:text-black ${
+                size.width <= 600 ? "flex-col" : "flex-row"
+              }`}
               key={index}
             >
-              <div className="w-[50%] flex justify-center">
+              <div
+                className={`${
+                  size.width <= 600 ? "w-[100%]" : "w-[50%]"
+                } flex justify-center`}
+              >
                 <img
-                  className="w-[70%] inline-block"
+                  className={`${
+                    size.width <= 600 ? "w-[50%]" : "w-[70%] "
+                  } inline-block`}
                   src={`${DOMAIN_IMG}${item.image}`}
                   alt="caroucel img"
                 />
               </div>
-              <div className="w-[50%]">
-                <h1 className="text-3xl font-medium leading-10 capitalize">
+              <div
+                className={`${
+                  size.width <= 600 ? "w-[100%] text-center" : "w-[50%]"
+                }`}
+              >
+                <h1
+                  className={`${
+                    size.width <= 600 ? "text-2xl" : "text-3xl"
+                  } font-medium leading-10 capitalize`}
+                >
                   {item.name}
                 </h1>
-                <p className="text-[16px] leading-5 font-light pt-1 pb-8">
+                <p
+                  className={`${
+                    size.width <= 600 ? "text-[14px]" : "text-[16px]"
+                  } leading-5 font-light pt-1 pb-8`}
+                >
                   {item.shortDescription}
                 </p>
                 <Button
