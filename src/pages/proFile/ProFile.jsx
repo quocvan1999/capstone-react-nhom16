@@ -16,6 +16,7 @@ import userNotification from "../../customHook/userNotification/userNotification
 import Model from "../../components/modal/Model";
 import OrderHistory from "../../components/orderHistory/OrderHistory";
 import FavouriteProFile from "../../components/favouriteProFile/FavouriteProFile";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const items = [
   {
@@ -31,6 +32,7 @@ const items = [
 ];
 
 const ProFile = () => {
+  const size = useWindowSize();
   const navigate = useNavigate();
   const { openNotification } = userNotification();
   const [isUpdate, setIsUpdate] = useState(false);
@@ -103,19 +105,32 @@ const ProFile = () => {
       {contextHolderModal}
       {isLogin === true && proFile ? (
         <div>
-          <TitlePage title="Profile" width="50%" />
-          <div className="w-full flex mt-5">
-            <div className="w-[30%] flex justify-center">
+          <TitlePage
+            title="Profile"
+            width={size.width <= 480 ? "100%" : "50%"}
+          />
+          <div
+            className={`w-full flex mt-5 ${
+              size.width <= 600 ? "flex-col gap-5" : "flex-row"
+            }`}
+          >
+            <div
+              className={`flex justify-center ${
+                size.width <= 600 ? "w-[100%]" : "w-[30%]"
+              }`}
+            >
               <Avatar size={140} src={proFile && proFile?.avatar} />
             </div>
-            <div className="w-[70%]">
+            <div className={size.width <= 600 ? "w-[100%]" : "w-[70%]"}>
               <Form
-                layout="vertical flex gap-3"
+                layout={`vertical flex ${
+                  size.width <= 480 ? " flex-col gap-0" : "flex-row gap-3"
+                }`}
                 onSubmitCapture={
                   !isUpdate ? handleChangeUpdate : formUpdate.handleSubmit
                 }
               >
-                <div className="w-[50%]">
+                <div className={`${size.width <= 600 ? "w-full" : "w-[50%]"}`}>
                   <Form.Item
                     label="Email"
                     className="font-semibold"
@@ -167,7 +182,8 @@ const ProFile = () => {
                     )}
                   </Form.Item>
                 </div>
-                <div className="w-[50%]">
+
+                <div className={`${size.width <= 600 ? "w-full" : "w-[50%]"}`}>
                   <Form.Item
                     label="Name"
                     className="font-semibold"
