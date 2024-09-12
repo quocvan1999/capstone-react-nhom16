@@ -8,8 +8,10 @@ import { useEffect, useState } from "react";
 import useLoadingData from "../../customHook/useLoadingData/useLoadingData";
 import _ from "lodash";
 import { useSelector } from "react-redux";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const Search = () => {
+  const size = useWindowSize();
   const [sortProduct, setSortProduct] = useState([]);
   const [sortOption, setSortOption] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -55,7 +57,10 @@ const Search = () => {
 
   return (
     <div className="w-full">
-      <Form layout="vertical" className="w-[50%]">
+      <Form
+        layout="vertical"
+        className={`${size.width <= 600 ? "w-[100%]" : "w-[50%]"}`}
+      >
         <Form.Item label="Search" className="font-bold">
           <Flex>
             <Input
