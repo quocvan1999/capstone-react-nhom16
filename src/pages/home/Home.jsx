@@ -5,7 +5,7 @@ import TitlePage from "../../components/titlePage/TitlePage";
 import useCheckLogin from "../../customHook/useCheckLogin/useCheckLogin";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProductApiAsync } from "../../apis/product/getAllProduct/getAllProduct.api";
-import { getProductFavoriteApiAsync } from "../../apis/product/getProductfavorite/GetProductFavorite.api";
+import { getProductFavoriteApiAsync } from "../../apis/product/getProductFavorite/GetProductFavorite.api";
 import { Pagination, Spin } from "antd";
 import { setCleanProductFavorite } from "../../redux/reducel/productReducer";
 
