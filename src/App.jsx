@@ -5,11 +5,11 @@ import NotFound from "./components/notFound/NotFound";
 import Login from "./pages/login/Login";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import Cart from "./pages/cart/Cart";
 import ProFile from "./pages/proFile/ProFile";
 import Detail from "./pages/detail/Detail";
 import Register from "./pages/register/Register";
 import Search from "./pages/search/Search";
+import CartLayout from "./pages/cart/CartLayout";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
             </Route>
 
             {/* Cart */}
-            <Route path="cart" element={<Cart />} />
+            <Route path="cart" element={<CartLayout />} />
 
             {/* Profile */}
             <Route path="profile" element={<ProFile />} />

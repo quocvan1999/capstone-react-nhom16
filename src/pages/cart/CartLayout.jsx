@@ -13,10 +13,14 @@ import {
 } from "../../redux/reducel/cartReducer";
 import userNotification from "../../customHook/userNotification/userNotification";
 import { orderApiAsync } from "../../apis/product/order/order.api";
+import { useWindowSize } from "@uidotdev/usehooks";
+import CartSmall from "./CartSmall";
+import CartBig from "./CartBig";
 
-const Cart = () => {
+const CartLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const size = useWindowSize();
   const { checkUserLogin, isLogin, proFile } = useCheckLogin();
   const { openNotification } = userNotification();
   const { confirm, contextHolderModal } = Model();
@@ -176,44 +180,26 @@ const Cart = () => {
 
   return (
     <>
-      {contextHolderModal}
-      {isLogin === true ? (
-        <div>
-          <h1 className="text-3xl">Cart</h1>
-          <hr className="my-6" />
-          {cart && (
-            <Table
-              columns={columns}
-              dataSource={cart.map((item, index) => ({ ...item, key: index }))}
-            />
-          )}
-          <div className="text-center">
-            <Button
-              onClick={handleOrderSubmit}
-              className="uppercase bg-[#F2994A] text-white px-5 border-none hover:!bg-[#f2984ac5] hover:!text-white mb-5 mt-10"
-            >
-              {cart.length > 0 ? "submit order" : "Go to homepage"}
-            </Button>
-          </div>
-        </div>
+      {size.width <= 600 ? (
+        <CartSmall
+          cart={cart}
+          contextHolderModal={contextHolderModal}
+          isLogin={isLogin}
+          handleOrderSubmit={handleOrderSubmit}
+          removeProduct={removeProduct}
+          handelChangeCount={handelChangeCount}
+        />
       ) : (
-        <Result
-          status="warning"
-          title="You need to login to view cart"
-          extra={
-            <NavLink
-              to="/auth"
-              className="bg-blue-500 text-white px-5 py-2 rounded-md font-medium hover:text-white hover:bg-blue-400"
-              type="primary"
-              key="goLoginPage"
-            >
-              Go to login page
-            </NavLink>
-          }
+        <CartBig
+          cart={cart}
+          columns={columns}
+          isLogin={isLogin}
+          handleOrderSubmit={handleOrderSubmit}
+          contextHolderModal={contextHolderModal}
         />
       )}
     </>
   );
 };
 
-export default Cart;
+export default CartLayout;
