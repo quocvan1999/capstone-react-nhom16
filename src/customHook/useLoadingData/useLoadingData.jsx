@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { getProductFavoriteApiAsync } from "../../apis/product/getProductfavorite/GetProductFavorite.api.js";
+import { getProductFavoriteApiAsync } from "../../apis/product/getProductfavorite/GetProductFavorite.api";
 import useCheckLogin from "../useCheckLogin/useCheckLogin";
 
 const useLoadingData = () => {
