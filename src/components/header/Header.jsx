@@ -12,6 +12,7 @@ import Model from "../modal/Model";
 import { deleteCookie } from "../../utils/method/method";
 import { useSelector } from "react-redux";
 import { useWindowScroll } from "@uidotdev/usehooks";
+import { LOGO } from "../../utils/setting/internal-variable";
 
 const menuItems = [
   {
@@ -91,7 +92,7 @@ const Header = () => {
       <div className="bg-black text-white">
         <div className="max-w-[1024px] mx-auto flex justify-between items-center p-2">
           <NavLink to="/">
-            <img src="/public/logo.png" alt="Logo" />
+            <img src={LOGO} alt="Logo" />
           </NavLink>
           <div className="flex items-center gap-5">
             <NavLink to="/product/result" className="flex items-center gap-1">
