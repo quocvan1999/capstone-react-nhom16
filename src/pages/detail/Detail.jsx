@@ -6,8 +6,6 @@ import { Button, Spin } from "antd";
 import { addToCart } from "../../redux/reducel/cartReducer";
 import userNotification from "../../customHook/userNotification/userNotification";
 import Card from "../../components/card/Card";
-import { getProductFavoriteApiAsync } from "../../apis/product/getProductfavorite/GetProductFavorite.api";
-import useCheckLogin from "../../customHook/useCheckLogin/useCheckLogin";
 import useLoadingData from "../../customHook/useLoadingData/useLoadingData";
 import { useWindowSize } from "@uidotdev/usehooks";
 
@@ -18,7 +16,6 @@ const Detail = () => {
   const { handleLoadingData } = useLoadingData();
   const [quantity, setQuantity] = useState(1);
   const { openNotification } = userNotification();
-  const { checkUserLogin, isLogin } = useCheckLogin();
   const { detailProduct } = useSelector((state) => state.productReducer);
   const { productFavorite } = useSelector((state) => state.productReducer);
   const { cart } = useSelector((state) => state.cartReducer);
